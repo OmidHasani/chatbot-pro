@@ -13,9 +13,11 @@ app.use(express.json());
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
 // اتصال به OpenAI
-const openai = new OpenAIApi(new Configuration({
+const OpenAI = require("openai");
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-}));
+});
+
 
 app.post('/chat', async (req, res) => {
   const { message } = req.body;
